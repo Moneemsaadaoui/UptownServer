@@ -1,0 +1,59 @@
+{
+  "name": "Trip",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Startadress": {
+      "type": "string"
+    },
+    "phonenumber": {
+      "type": "string"
+    },
+    "places": {
+      "type": "number"
+    },
+    "date": {
+      "type": "date"
+    },
+     "price": {
+      "type": "number"
+    },
+	
+    "id": {
+    "type": "string",
+    "id": true,
+    "defaultFn": "uuid"
+}
+  },
+  "validations": [],
+  "relations": {
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

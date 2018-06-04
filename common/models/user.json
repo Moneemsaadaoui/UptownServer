@@ -1,0 +1,98 @@
+{
+  "name": "user",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "phNumber": {
+      "type": "string"
+    },
+    "bDate": {
+      "type": "date"
+    },
+    "sex": {
+      "type": "boolean"
+    },
+    "pUrl": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "documents": {
+      "type": "hasMany",
+      "model": "document",
+      "foreignKey": "usersId"
+    },
+    "doctors": {
+      "type": "embedsMany",
+      "model": "doctor",
+      "property": "Mydoctor",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "healthStructs": {
+      "type": "embedsMany",
+      "model": "healthStruct",
+      "property": "MhealthStruck",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "login"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {
+
+    "addDoctor": {
+      "accepts": [
+        {"arg": "doctorId", "type": "string", "required": true},
+        {"arg": "options", "type": "object", "http": "optionsFromRequest"}
+      ],
+      "http": {"verb": "POST", "path": "/addDoctor/:id"}
+    },
+    "addHealthStruct": {
+      "accepts": [
+        {"arg": "healthStructId", "type": "string", "required": true},
+        {"arg": "options", "type": "object", "http": "optionsFromRequest"}
+      ],
+      "http": {"verb": "POST", "path": "/addHealthStruct/:id"}
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://neder:rrdl4life@ds247330.mlab.com:47330/uptown",
+    "database": "uptown",
+    "password": "",
+    "name": "db",
+    "user": "user",
+    "connector": "mongodb"
+  },
+  "transient": {
+    "name": "transient",
+    "connector": "transient"
+  }
+}
